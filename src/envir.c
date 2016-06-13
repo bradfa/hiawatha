@@ -105,7 +105,7 @@ int http_header_to_environment(t_session *session, t_fcgi_buffer *fcgi_buffer, c
 /* Set environment variables for CGI script.
  */
 void set_environment(t_session *session, t_fcgi_buffer *fcgi_buffer) {
-	char ip[MAX_IP_STR_LEN], len[20], value[10], *data, variable[MAX_HEADER_LEN], old;
+	char ip[MAX_IP_STR_LEN], value[10], *data, variable[MAX_HEADER_LEN], old;
 	size_t len1, len2, path_info_len;
 	bool has_path_info = false;
 	t_http_header *http_headers;
@@ -176,10 +176,8 @@ void set_environment(t_session *session, t_fcgi_buffer *fcgi_buffer) {
 		add_to_environment(fcgi_buffer, "QUERY_STRING", session->vars);
 	}
 
-	if (session->body != NULL) {
-		snprintf(len, 19, "%ld", session->content_length);
-		len[19] = '\0';
-		add_to_environment(fcgi_buffer, "CONTENT_LENGTH", len);
+	if (session->body != NULL || session->uploaded_file != NULL) {
+		http_header_to_environment(session, fcgi_buffer, "Content-Length:", "CONTENT_LENGTH");
 		http_header_to_environment(session, fcgi_buffer, "Content-Type:", "CONTENT_TYPE");
 	}
 
