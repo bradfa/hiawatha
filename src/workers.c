@@ -856,6 +856,8 @@ no_toolkit:
 			}
 	}
 
+	check_target_is_cgi(session);
+
 	switch (is_directory(session->file_on_disk)) {
 		case error:
 			return 500;
@@ -877,7 +879,7 @@ no_toolkit:
 			log_error(session, fb_filesystem);
 			return 403;
 		case not_found:
-			if ((session->request_method == DELETE) && (session->host->webdav_app == false)) {
+			if ((session->request_method == DELETE) && (session->host->webdav_app == false) && (session->cgi_type == no_cgi)) {
 				return 404;
 			}
 	}
@@ -897,10 +899,6 @@ no_toolkit:
 		} else {
 			return 301;
 		}
-	}
-
-	if ((session->request_method != DELETE) || session->host->webdav_app) {
-		check_target_is_cgi(session);
 	}
 
 	/* Handle request based on request method
