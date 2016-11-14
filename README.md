@@ -4,6 +4,12 @@ Hiawatha is an open source webserver with security, easy to use and lightweight 
 
 The Hiawatha webserver has been written by Hugo Leisink <hugo@leisink.net>. More information about the Hiawatha webserver can be found at https://www.hiawatha-webserver.org/.
 
+Dependencies
+------------
+Hiawatha depends on the mbedtls library: https://tls.mbed.org/
+
+If the -DENABLE_XSLT=ON option is passed to cmake, Hiawatha depends on libxslt: http://xmlsoft.org/XSLT/
+
 Installation
 ------------
 If the CMake version installed on your system is lower than 2.8.2, remove it, download the latest version from https://cmake.org/download/#latest and install it.
@@ -30,7 +36,6 @@ The following options for cmake are available. Default value is in uppercase.
 	-DENABLE_TOMAHAWK=on|OFF           Enable Tomahawk, the Hiawatha command shell.
 	-DENABLE_TOOLKIT=ON|off            Enable the URL Toolkit.
 	-DENABLE_XSLT=ON|off               Enable XSLT support.
-	-DUSE_SYSTEM_MBEDTLS=on|OFF        Compile Hiawatha against the system's mbed TLS library (>=2.0.0).
 
 The following path settings are available for cmake.
 
@@ -38,7 +43,6 @@ The following path settings are available for cmake.
 	-DCMAKE_INSTALL_BINDIR=<path>      Location of the ssi-cgi binary.
 	-DCMAKE_INSTALL_SBINDIR=<path>     Location of the other Hiawatha binaries.
 	-DCMAKE_INSTALL_SYSCONFDIR=<path>  The configuration files will be installed in <path>/hiawatha.
-	-DCMAKE_INSTALL_LIBDIR=<path>      The mbed TLS shared library will be installed in <path>/hiawatha.
 	-DCMAKE_INSTALL_MANDIR=<path>      Manual pages will be installed in <path>/man1.
 	-DCONFIG_DIR=<path>                Location of the Hiawatha configuration files.
 	-DLOG_DIR=<path>                   Log directory used in the default hiawatha.conf.
