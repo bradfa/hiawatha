@@ -32,7 +32,7 @@
 #include "libstr.h"
 #include "libfs.h"
 #include "libstr.h"
-#include "mbedtls/md5.h"
+#include <mbedtls/md5.h>
 #include "memdbg.h"
 
 #define RPROXY_ID_LEN             10 /* Must be smaller than 32 */

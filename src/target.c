@@ -43,7 +43,7 @@
 #include "tomahawk.h"
 #include "xslt.h"
 #include "memdbg.h"
-#include "mbedtls/sha256.h"
+#include <mbedtls/sha256.h>
 
 #define FILE_BUFFER_SIZE      32 * KILOBYTE
 #define MAX_OUTPUT_HEADER     16 * KILOBYTE

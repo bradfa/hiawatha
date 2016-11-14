@@ -24,7 +24,7 @@
 #include "libstr.h"
 #include "libfs.h"
 #include "filehashes.h"
-#include "mbedtls/sha256.h"
+#include <mbedtls/sha256.h>
 #include "memdbg.h"
 
 #define BUFFER_SIZE 1024
