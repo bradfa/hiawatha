@@ -31,7 +31,11 @@
 #include "mbedtls/ssl_cache.h"
 #include "mbedtls/error.h"
 #include "mbedtls/version.h"
+#if (MBEDTLS_VERSION_MAJOR <= 2) && (MBEDTLS_VERSION_MINOR <= 3)
 #include "mbedtls/net.h"
+#else
+#include "mbedtls/net_sockets.h"
+#endif
 #include "mbedtls/ssl.h"
 #include "mbedtls/x509.h"
 #ifdef ENABLE_DEBUG
